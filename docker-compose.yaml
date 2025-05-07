@@ -1,7 +1,7 @@
 version: "3"
 services:
   pixpro_1:
-    build: .
+    image: thev1ndu/pixelproxy:latest
     environment:
       APP_NAME: PixelProxy 1
     ports:
@@ -10,7 +10,7 @@ services:
       - pixpro-network
 
   pixpro_2:
-    build: .
+    image: thev1ndu/pixelproxy:latest
     environment:
       APP_NAME: PixelProxy 2
     ports:
@@ -19,7 +19,7 @@ services:
       - pixpro-network
 
   pixpro_3:
-    build: .
+    image: thev1ndu/pixelproxy:latest
     environment:
       APP_NAME: PixelProxy 3
     ports:
@@ -28,7 +28,7 @@ services:
       - pixpro-network
 
   pixpro_backup:
-    build: .
+    image: thev1ndu/pixelproxy:latest
     environment:
       APP_NAME: PixelProxy Backup
     ports:
