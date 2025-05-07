@@ -1,15 +1,15 @@
 {
-  "name": "",
+  "name": "PixelProxy",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node --env-file=.env --watch server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "ThevinduW",
   "license": "ISC",
-  "description": "",
+  "description": "A Dockerized Node.js application with Nginx reverse proxy for handling web traffic efficiently. Built for performance, scalability, and easy deployment.",
   "dependencies": {
     "express": "^5.1.0",
     "path": "^0.12.7"
