@@ -4,13 +4,15 @@ const app = express();
 
 const PORT = 3000;
 
+const APP = process.env.APP_NAME;
+
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
-  console.log("RS.");
+  console.log(`RS. by ${APP}`);
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  console.log(`${APP}: Listening on port ${PORT}`);
 });

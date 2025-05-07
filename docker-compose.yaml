@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app_one:
+    build: .
+    environment:
+      APP_NAME: App 1
+    ports:
+      - "3001:3000"
+
+  app_two:
+    build: .
+    environment:
+      APP_NAME: App 2
+    ports:
+      - "3002:3000"
+
+  app_three:
+    build: .
+    environment:
+      APP_NAME: App 3
+    ports:
+      - "3003:3000"
