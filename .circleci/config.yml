@@ -1,23 +1,9 @@
-version: 2.1
-
-orbs:
-  docker: circleci/docker@2.4.0
-
-executors:
-  docker-executor:
-    docker:
-      - image: cimg/base:stable
-    working_directory: ~/repo
-
 jobs:
-  build_and_scan:
-    executor: docker-executor
+  CI:
+    machine: true
 
     steps:
       - checkout
-
-      - setup_remote_docker:
-          docker_layer_caching: true
 
       - run:
           name: Build Docker Image
@@ -54,8 +40,3 @@ jobs:
           command: |
             docker tag pixelproxy:latest $DOCKERHUB_USERNAME/pixelproxy:latest
             docker push $DOCKERHUB_USERNAME/pixelproxy:latest
-
-workflows:
-  build-and-scan-workflow:
-    jobs:
-      - build_and_scan
