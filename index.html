@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelProxy | Card Gallery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Animation classes */
+      .animate-fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      .animate-slide-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animation delays */
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+      .delay-500 {
+        animation-delay: 0.5s;
+      }
+
+      /* Card styles */
+      .card {
+        transition: all 0.4s ease;
+        transform-origin: center;
+        cursor: pointer;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .card-image {
+        transition: all 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-image img {
+        transition: transform 0.6s ease;
+      }
+
+      .card:hover .card-image img {
+        transform: scale(1.05);
+      }
+
+      /* Heart beat animation */
+      .heartbeat {
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        14% {
+          transform: scale(1.3);
+        }
+        28% {
+          transform: scale(1);
+        }
+        42% {
+          transform: scale(1.3);
+        }
+        70% {
+          transform: scale(1);
+        }
+      }
+
+      /* Custom scroller */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+    <header class="py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center animate-fade-in">
+          <div class="flex items-center space-x-2 mb-2">
+            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-pink-500 rounded-full"></div>
+          </div>
+          <h1
+            class="text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"
+          >
+            PixelProxy
+          </h1>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+      <!-- Card Gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1 -->
+        <div class="animate-slide-up delay-100">
+          <div class="card bg-white h-full">
+            <div class="card-image">
+              <img
+                src="/images/pixel-b-and-w.jpg"
+                alt="Blue and White Pixel Art"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-lg text-gray-800">Blue & White</h3>
+              <p class="text-gray-600 text-sm mt-1">Pixel art composition</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="animate-slide-up delay-200">
+          <div class="card bg-white h-full">
+            <div class="card-image">
+              <img
+                src="/images/pixel-pacman.jpg"
+                alt="Pacman Pixel Art"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-lg text-gray-800">Pacman</h3>
+              <p class="text-gray-600 text-sm mt-1">Classic gaming pixel art</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="animate-slide-up delay-300">
+          <div class="card bg-white h-full">
+            <div class="card-image">
+              <img
+                src="/images/pixel-dark.jpg"
+                alt="Dark Themed Pixel Art"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-lg text-gray-800">Dark Castle</h3>
+              <p class="text-gray-600 text-sm mt-1">Moody pixel composition</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="animate-slide-up delay-400">
+          <div class="card bg-white h-full">
+            <div class="card-image">
+              <img
+                src="/images/pixel-park.jpg"
+                alt="Park Scene Pixel Art"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-lg text-gray-800">Park Scene</h3>
+              <p class="text-gray-600 text-sm mt-1">Nature-inspired pixels</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      class="bg-white py-10 mt-12 border-t border-gray-200 animate-fade-in"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <h2
+              class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"
+            >
+              PixelProxy
+            </h2>
+            <p class="text-gray-500 mt-1">Elevating visual storytelling.</p>
+          </div>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <i class="fab fa-behance text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div
+          class="mt-8 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500">
+            &copy; 2025 PixelProxy. All rights reserved.
+          </p>
+          <div class="mt-4 md:mt-0 flex items-center">
+            <p class="text-gray-500 text-sm flex items-center">
+              Made with
+              <i class="fas fa-heart text-red-500 mx-1 heartbeat"></i> by
+              Thevindu
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Animate elements when they enter the viewport
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        // Observe all animated elements
+        document.querySelectorAll(".animate-slide-up").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
