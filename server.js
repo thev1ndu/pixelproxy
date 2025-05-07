@@ -10,7 +10,7 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
-  console.log(`RS. by ${APP}`);
+  console.log(`Response by ${APP}`);
 });
 
 app.listen(PORT, () => {
