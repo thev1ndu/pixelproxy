@@ -1,14 +1,5 @@
 version: 2.1
 
-orbs:
-  docker: circleci/docker@2.4.0
-
-executors:
-  docker-executor:
-    docker:
-      - image: cimg/base:stable
-    working_directory: ~/repo
-
 jobs:
   CI:
     machine: true
@@ -51,3 +42,8 @@ jobs:
           command: |
             docker tag pixelproxy:latest $DOCKERHUB_USERNAME/pixelproxy:latest
             docker push $DOCKERHUB_USERNAME/pixelproxy:latest
+
+workflows:
+  build_and_push:
+    jobs:
+      - CI
