@@ -1,3 +1,14 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.4.0
+
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/repo
+
 jobs:
   CI:
     machine: true
