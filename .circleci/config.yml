@@ -1,0 +1,61 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.4.0
+
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/repo
+
+jobs:
+  build_and_scan:
+    executor: docker-executor
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t pixelproxy:latest .
+
+      - run:
+          name: Run Docker Compose
+          command: |
+            docker-compose up -d --build
+
+      - run:
+          name: Install Trivy
+          command: |
+            sudo apt-get update && sudo apt-get install -y wget rpm
+            wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.50.1_Linux-64bit.deb
+            sudo dpkg -i trivy_0.50.1_Linux-64bit.deb
+
+      - run:
+          name: Scan Image with Trivy
+          command: |
+            trivy image --exit-code 1 --ignore-unfixed --vuln-type os,library --format table pixelproxy:latest
+
+      - run:
+          name: Stop Docker Compose
+          command: docker-compose down
+
+      - run:
+          name: Docker Login
+          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+
+      - run:
+          name: Tag & Push Docker Image
+          command: |
+            docker tag pixelproxy:latest $DOCKERHUB_USERNAME/pixelproxy:latest
+            docker push $DOCKERHUB_USERNAME/pixelproxy:latest
+
+workflows:
+  build-and-scan-workflow:
+    jobs:
+      - build_and_scan
