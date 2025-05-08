@@ -1,17 +1,21 @@
+# Use official Node.js Alpine image for a smaller footprint
 FROM node:24-alpine
 
+# Set working directory
 WORKDIR /app
 
-COPY package.json .
-
+# Install dependencies
+COPY package.json package-lock.json* ./
 RUN npm install
 
-COPY server.js .
+# Copy remaining app files
+COPY . .
 
-COPY index.html .
+# Install nodemon globally for hot reloading
+RUN npm install -g nodemon
 
-COPY images ./images
-
+# Expose the internal port
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+# Default command to run in dev mode using nodemon
+CMD ["nodemon", "server.js"]

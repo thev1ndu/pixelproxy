@@ -1,40 +1,61 @@
-version: "3"
+version: "3.9"
+
+x-develop: &default-dev
+  watch:
+    - path: .
+      target: /app
+      action: sync
+      ignore:
+        - node_modules/
+        - logs/
+        - .git/
+        - npm-debug.log
+        - docker-compose.override.yml
+
 services:
   pixpro_1:
-    image: thev1ndu/pixelproxy:latest
+    build: .
     environment:
       APP_NAME: PixelProxy 1
     ports:
       - "3001:3000"
     networks:
       - pixpro-network
+    develop:
+      <<: *default-dev
 
   pixpro_2:
-    image: thev1ndu/pixelproxy:latest
+    build: .
     environment:
       APP_NAME: PixelProxy 2
     ports:
       - "3002:3000"
     networks:
       - pixpro-network
+    develop:
+      <<: *default-dev
 
   pixpro_3:
-    image: thev1ndu/pixelproxy:latest
+    build: .
     environment:
       APP_NAME: PixelProxy 3
     ports:
       - "3003:3000"
     networks:
       - pixpro-network
+    develop:
+      <<: *default-dev
 
   pixpro_backup:
-    image: thev1ndu/pixelproxy:latest
+    build: .
     environment:
       APP_NAME: PixelProxy Backup
     ports:
       - "3004:3000"
     networks:
       - pixpro-network
+    develop:
+      <<: *default-dev
 
   nginx:
     image: nginx:latest
