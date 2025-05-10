@@ -96,7 +96,7 @@
 docker-compose up --build
 ```
 
-### Logging Stack Build
+### Logging Stack Build ( Grafana )
 
 ```bash
 docker compose -f docker-compose.logging.yml up --build
